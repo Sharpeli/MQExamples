@@ -1,0 +1,54 @@
+version: '3.4'
+
+services:
+  publisher:
+    image: ${DOCKER_REGISTRY-}publisher
+    build:
+      context: .
+      dockerfile: Publisher/Dockerfile
+
+  consumer1:
+    image: ${DOCKER_REGISTRY-}consumer1
+    build:
+      context: .
+      dockerfile: Consumer1/Dockerfile
+
+
+  consumer2:
+    image: ${DOCKER_REGISTRY-}consumer2
+    build:
+      context: .
+      dockerfile: Consumer2/Dockerfile
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+
+  activemq:
+    image: apache/activemq-classic:6.1.0
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    environment:
+      - ACTIVEMQ_CONNECTION_USER=user
+      - ACTIVEMQ_CONNECTION_PASSWORD=password
+
+  aws:
+    image: localstack/localstack-pro
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN="ls-JuraQUyi-zaDI-gAzO-5365-raHOTaCof672"
+
