@@ -50,5 +50,5 @@ services:
       - "4566:4566"
       - "4510-4559:4510-4559"
     environment:
-      - LOCALSTACK_AUTH_TOKEN="ls-JuraQUyi-zaDI-gAzO-5365-raHOTaCof672"
+      - LOCALSTACK_AUTH_TOKEN="{AuthToken}"
 
