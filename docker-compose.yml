@@ -44,9 +44,9 @@ services:
       - ACTIVEMQ_CONNECTION_USER=user
       - ACTIVEMQ_CONNECTION_PASSWORD=password
 
-    aws:
-      image: localstack/localstack:latest
-      ports:
-        - "4566:4566"
-        - "4510-4559:4510-4559"
+  aws:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
 
